@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Pagination } from "@mui/material";
 
-const ThePagination = ({ data, pageNumber, setPageNumber }) => {
+const ThePagination = ({ cards, pageNumber, setPageNumber }) => {
   const handleChange = (e, p) => {
     setPageNumber(p);
   };
 
   return (
-    <div className="center mt-2">
+    <div className="center mt-2 mb-3">
       <Pagination
-        count={data?.pages}
+        count={cards?.pages}
         size="large"
         page={pageNumber}
         variant="outlined"

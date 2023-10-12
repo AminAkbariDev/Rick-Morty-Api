@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.text-head{
+.text-head {
   color: blueviolet;
 }
 
@@ -10,6 +10,35 @@
   display: flex;
   justify-content: center;
 }
-.mt-2{
+.mt-2 {
   margin-top: 2rem;
+}
+.mb-3 {
+  margin-bottom: 3rem;
+}
+.margin-auto {
+  margin: 0 auto;
+}
+
+.link {
+  color: rgb(0, 137, 228);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.router-link{
+  text-decoration: none !important;
+}
+.lg-menu{
+  color: #fff !important;
+}
+.Appbar{
+  background-color: rgb(208, 147, 248) !important;
+  margin-bottom: 4rem;
+}
+
+.active{
+  color: blueviolet !important;
+  border-bottom: 3px solid blueviolet;
+  font-weight: bolder;
 }

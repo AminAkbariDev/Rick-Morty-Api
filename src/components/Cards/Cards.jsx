@@ -8,26 +8,32 @@ import {
   CardMedia,
   Chip,
 } from "@mui/material";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Cards = ({ data }) => {
   const Style = {
     positionRelative: { position: "relative" },
     statusBadge: { position: "absolute", top: "5px", right: "5px" },
   };
+
   let display;
   if (data) {
     display = data.map((card) => {
       let { id, name, image, status } = card;
       return (
-        <Grid key={id} item md={3} xs={4}>
+        <Grid className="center" key={id} item md={3} xs={12}>
           <Card style={Style.positionRelative} sx={{ maxWidth: 345 }}>
             <CardActionArea>
-              <CardMedia
+              {/* <CardMedia
                 component="img"
                 height="150"
+                className="lozad"
                 image={image}
                 alt={name}
-              />
+              /> */}
+
+              <LazyLoadImage  effect="blur" src={image} alt={name} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {name}
@@ -41,7 +47,7 @@ const Cards = ({ data }) => {
             <Chip
               style={Style.statusBadge}
               label={status}
-              color={status == "Alive" ? "success" : "secondary"}
+              color={status == "Alive" ? "success" : "error"}
             />
           </Card>
         </Grid>
