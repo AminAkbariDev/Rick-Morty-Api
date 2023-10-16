@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Navbar from "./common/Navbar/Navbar";
 import { Grid } from "@mui/material";
+import Loader from './common/Loader/Loader'
 import Cards from "./components/Cards/Cards";
 import Filters from "./components/Filters/Filters";
 import ThePagination from "./components/ThePagination/ThePagination";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Statistics from "./Pages/Statistics";
 import "./App.css";
+import { useInfiniteQuery } from "@tanstack/react-query";
+
+// `https://api.realworld.io/api/articles?limit=10&offset=${pageParam}`
+
+const getUsers = async ({ pageParam = 1 }) => {
+  const res = await fetch(
+    `https://rickandmortyapi.com/api/character/?page=${pageParam}`
+  )
+  const data = await res.json()
+  return { ...data, prevOffset: pageParam }
+}
+
 
 function App() {
+
+
   return (
     <Router>
       <div className="App">
@@ -29,16 +46,49 @@ const Home = () => {
   let [status, setStatus] = useState("");
   let [gender, setGender] = useState("");
   let [species, setSpecies] = useState("");
+  let [loading, setLoading] = useState(true)
 
   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&status=${status}&gender=${gender}&species=${species}`;
 
   useEffect(() => {
     (async function () {
-      let data = await fetch(api).then((res) => res.json());
-      updateFetchedData(data);
+      let data = await axios.get(api);
+      updateFetchedData([data.data])
     })();
-  }, [api]);
-  console.log(info);
+  }, [pageNumber]);
+
+
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    queryKey: ['characters'],
+    queryFn: getUsers,
+    getNextPageParam: lastPage => {
+      if (lastPage.prevOffset + 10 > lastPage.articleCount) {
+        return false;
+      }
+
+      return lastPage.prevOffset + 10;
+    }
+  })
+
+  const characters = data?.pages.reduce((acc, character) => {
+    return [...acc, ...character.results];
+  }, [])
+
+
+  const handleScroll = () => {
+    if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
+      setLoading(true)
+      setPageNumber(perv => perv + 1)
+    }
+  }
+
+  useEffect(() => {
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <div className="App">
       <Grid container spacing={2}>
@@ -51,9 +101,16 @@ const Home = () => {
           />
         </Grid>
         <Grid item md={9} xs={12}>
-          <Cards data={results} />
+          <Cards data={characters} />
         </Grid>
       </Grid>
+      <InfiniteScroll
+        dataLength={characters ? characters.length : 0}
+        next={() => fetchNextPage()}
+        hasMore={hasNextPage}
+        loading={<Loader />}
+      />
+      {loading && <Loader />}
       <ThePagination
         cards={info}
         pageNumber={pageNumber}

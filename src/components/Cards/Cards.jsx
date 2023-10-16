@@ -25,14 +25,6 @@ const Cards = ({ data }) => {
         <Grid className="center" key={id} item md={3} xs={12}>
           <Card style={Style.positionRelative} sx={{ maxWidth: 345 }}>
             <CardActionArea>
-              {/* <CardMedia
-                component="img"
-                height="150"
-                className="lozad"
-                image={image}
-                alt={name}
-              /> */}
-
               <LazyLoadImage  effect="blur" src={image} alt={name} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
