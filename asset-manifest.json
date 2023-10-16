@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Rick-Morty-Api/static/css/main.c97adca2.css",
-    "main.js": "/Rick-Morty-Api/static/js/main.1a46b445.js",
+    "main.css": "/Rick-Morty-Api/static/css/main.d589abfc.css",
+    "main.js": "/Rick-Morty-Api/static/js/main.c37b9dad.js",
     "static/media/roboto-latin-500-normal.woff2": "/Rick-Morty-Api/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/Rick-Morty-Api/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
     "static/media/roboto-latin-400-normal.woff2": "/Rick-Morty-Api/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
@@ -59,11 +59,11 @@
     "static/media/roboto-greek-ext-400-normal.woff": "/Rick-Morty-Api/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "static/media/roboto-greek-ext-700-normal.woff": "/Rick-Morty-Api/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/Rick-Morty-Api/index.html",
-    "main.c97adca2.css.map": "/Rick-Morty-Api/static/css/main.c97adca2.css.map",
-    "main.1a46b445.js.map": "/Rick-Morty-Api/static/js/main.1a46b445.js.map"
+    "main.d589abfc.css.map": "/Rick-Morty-Api/static/css/main.d589abfc.css.map",
+    "main.c37b9dad.js.map": "/Rick-Morty-Api/static/js/main.c37b9dad.js.map"
   },
   "entrypoints": [
-    "static/css/main.c97adca2.css",
-    "static/js/main.1a46b445.js"
+    "static/css/main.d589abfc.css",
+    "static/js/main.c37b9dad.js"
   ]
 }
